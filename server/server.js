@@ -28,11 +28,17 @@ cloudinary.config({
 
 // Middleware
 app.use(express.json());
+const allowedOrigins = ["https://showtix.vercel.app"];
 app.use(
   cors({
-    // origin: "https://cinemedia-client.vercel.app",
-    origin: "http://localhost:5173",
-    credentials: true,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true, // Allow credentials
   })
 );
 app.use(cookieParser());
