@@ -31,7 +31,7 @@ app.use(express.json());
 app.use(
   cors({
     // origin: "https://cinemedia-client.vercel.app",
-    origin: "http://localhost:5173",
+    origin: "https://showtix.vercel.app/",
     credentials: true,
   })
 );
