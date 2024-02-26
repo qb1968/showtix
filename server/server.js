@@ -15,7 +15,7 @@ const payment = require("./controller/PaymentController");
 
 dotenv.config();
 
-connectDB();
+// connectDB();
 
 const app = express();
 
@@ -52,9 +52,11 @@ app.get("/", (req, res) => {
 // Server
 const port = process.env.PORT || 8080;
 
+connectDB().then(() =>{
 app.listen(port, () => {
   console.log(
     `Server is running in ${process.env.NODE_MODE} Mode on port ${port}`.bgCyan
       .white
   );
 });
+})
